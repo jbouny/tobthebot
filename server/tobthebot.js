@@ -1,19 +1,21 @@
-var http = require('http');
-var connect = require('connect');
+var http = require( 'http' );
+var connect = require( 'connect' );
 
 // Create server
 var app = connect();
-var static = require('serve-static');
-app.use(static('../front'));
-var server = http.createServer(app);
+var static = require( 'serve-static' );
+app.use( static( '../front' ) );
+var server = http.createServer( app );
 
-// Load socket.io
-var io = require('socket.io').listen(server);
+var io = require( 'socket.io' )( server );
 
 // Callback exemple
-io.sockets.on('connection', function (socket) {
-    console.log('A new client is connected');
+io.sockets.on( 'connection', function ( socket ) {
+    console.log( 'A client is connected' );
+	
+	socket.on( 'message', function ( message ) {
+		console.log( 'client: ' + message.key + " " + message.active );
+	} );
 });
 
-
-server.listen(8080);
+server.listen( 8080 );
