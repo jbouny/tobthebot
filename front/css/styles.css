@@ -63,7 +63,7 @@ footer {
   background-color: #aaa;
   color: white;
 }
-.hvr-fade:active {
+.hvr-fade:active, .active {
   background-color: #2098d1;
   color: white;
 }
